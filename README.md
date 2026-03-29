@@ -39,27 +39,27 @@ The pipeline follows an **ELT (Extract, Load, Transform)** pattern:
   * `docker-compose.yaml`: Airflow environment configuration.
 
 ## 🚀 How to Run
-1. Prerequisites
-  * Google Cloud Project with a Service Account (JSON key).
-  * Docker & Docker Compose installed.
-  * Terraform installed.
+ 1. Prerequisites
+   * Google Cloud Project with a Service Account (JSON key).
+   * Docker & Docker Compose installed.
+   * Terraform installed.
 
-2. Infrastructure Setup
-  `cd terraform`
-  `terraform init`
-  `terraform apply`
+ 2. Infrastructure Setup
+   * `cd terraform`
+   * `terraform init`
+   * `terraform apply`
 
-3. Pipeline Execution
-  * Place your `service_account.json` inside the `dags/` folder as `google_credentials.json`.
-  * Start Airflow: `docker-compose up -d`.
-  * Access Airflow UI at `localhost:8080` and trigger the `openaq_to_bigquery_zoomcamp` DAG.
+ 3. Pipeline Execution
+   * Place your `service_account.json` inside the `dags/` folder as `google_credentials.json`.
+   * Start Airflow: `docker-compose up -d`.
+   * Access Airflow UI at `localhost:8080` and trigger the `openaq_to_bigquery_zoomcamp` DAG.
 
-4. Transformation
-The DAG automatically runs dbt. To run it manually from the container:
-`dbt run --profiles-dir .`
+ 4. Transformation
+   * The DAG automatically runs dbt. To run it manually from the container:
+     * `dbt run --profiles-dir .`
 
 📊 Dashboard & Insights
-  The final output is an interactive Looker Studio Dashboard featuring:
+  - The final output is an interactive Looker Studio Dashboard featuring:
 
   * Global Choropleth Map: Real-time pollution levels by country (ISO Alpha-2).
   * Comparative Analysis: Bar charts comparing pollutants (PM2.5, PM10, etc.) across cities.
