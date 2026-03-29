@@ -29,6 +29,8 @@ The pipeline follows an **ELT (Extract, Load, Transform)** pattern:
 
 ## 🏗️ Architecture Diagram
 
+<img width="3973" height="164" alt="mermaid-diagram2" src="https://github.com/user-attachments/assets/3c8ebab6-5cec-4b6e-ae65-9306011d2592" />
+
 
 ## 📁 Repository Structure
   * `dags/`: Airflow DAGs and Google Cloud credentials.
