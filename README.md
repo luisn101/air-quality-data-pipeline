@@ -64,3 +64,6 @@ The DAG automatically runs dbt. To run it manually from the container:
   * Data Freshness: Automated updates tracked via BigQuery metadata.
 
   https://lookerstudio.google.com/reporting/644cb36e-2085-44ca-8349-408518f1a563/page/m1ZtF/edit
+
+  <img width="1017" height="466" alt="project_dashboard" src="https://github.com/user-attachments/assets/9954b820-6ff0-4dfe-82ca-1dc53dcf2f6d" />
+
