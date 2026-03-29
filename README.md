@@ -1,39 +1,66 @@
-# Global Air Quality Analytics Pipeline (OpenAQ)
+# Global Air Quality Analytics Pipeline (OpenAQ) 🌍💨
 
 ## 🎯 Project Objective
-The goal of this project is to build an end-to-end data pipeline to monitor global air quality using the **OpenAQ** open data platform.
+The goal of this project is to build a robust, end-to-end data pipeline to monitor global air quality using data from the **OpenAQ** platform.
 
-This project applies the core concepts of the **Data Engineering Zoomcamp**, implementing a batch processing architecture to extract, store, transform, and visualize critical atmospheric pollutants such as PM2.5.
+This project implements a Modern Data Stack architecture, applying core concepts from the **Data Engineering Zoomcamp**:
+
+* Infrastructure as Code (IaC) for cloud resource provisioning.
+* Workflow Orchestration for automated batch processing.
+* Data Lake & Warehouse integration for scalable storage.
+* Analytics Engineering to transform raw data into actionable insights.
 
 ## ⚠️ Problem Statement
 
-Air pollution is an invinsible risk affecting millions of people worldwide. Although thousands of monitoring stations exist, the data is often fragmented, inconsistently formatted and stored in silos.
+Air pollution is a global health crisis, yet air quality data is often fragmented across different formats and providers. This pipeline addresses the need for **centralized, standardized, and transformed data**, answering key questions:
 
-This pipeline addresses the **centralization and standardization** of this data.
-* Which regions exhibit the highest levels of pollution in real-time?
-* How do PM2.5 levels fluctuate throughout a 24-hour daily cycle?
+1. Which countries/regions exhibit the highest pollution levels (PM2.5, PM10, O3) right now?
+2. How do these levels compare globally through automated daily cycles?
 
-## 🛠️ Tech Stack
-* **Cloud:** Google Cloud Platform (GCS & BigQuery)
-* **Infrastructure as Code (IaC):** Terraform
-* **Workflow Orchestration:** Airflow (Running on Docker)
-* **Data Warehouse:** BigQuery (Partitioned & Clustered)
-* **Transformations:** dbt (Data Build Tool)
-* **Visualization:** Looker Studio
+## 🛠️ Architecture & Tech Stack
+The pipeline follows an **ELT (Extract, Load, Transform)** pattern:
+1. Infrastructure: Provisioned with Terraform (GCS Bucket & BigQuery Dataset).
+2. Orchestration: Apache Airflow running on Docker manages the workflow.
+3. Extraction: Python script fetches real-time global data (latest measurements).
+4. Data Lake: Raw data is stored in Google Cloud Storage (GCS) as CSV.
+5. Data Warehouse: Data is loaded into Google BigQuery.
+6. Transformation: dbt (Data Build Tool) handles data cleaning (Staging) and aggregation (Marts).
+7. Visualization: Looker Studio provides a global interactive dashboard.
 
 ## 🏗️ Architecture Diagram
 
 
 ## 📁 Repository Structure
-* `dags/`: Data ingestion orchestration with Airflow.
-* `terraform/`: Scripts for provisioning GCP infrastructure.
-* `docker/`: Container configuration for the Airflow environment.
-* `scripts/`: Utility scripts for data processing and loading.
-* `dbt/`: Data transformation and cleaning models.
+* `dags/`: Airflow DAGs and Google Cloud credentials.
+* `my_project_dbt/`: dbt models (Staging/Marts) and schema definitions.
+* `terraform/`: HCL scripts for GCP resource provisioning.
+* `docker-compose.yaml`: Airflow environment configuration.
 
 ## 🚀 How to Run
-*(Note: This section will be updated as the components are built)*
+1. Prerequisites
+* Google Cloud Project with a Service Account (JSON key).
+* Docker & Docker Compose installed.
+* Terraform installed.
 
-1. **Infrastructure:** `cd terraform && terraform apply`
-2. **Pipeline:** Start Docker and trigger the `openaq_ingestion_dag`.
-3. **Transformation:** Run `dbt run` to process data within BigQuery.
+2. Infrastructure Setup
+`cd terraform`
+`terraform init`
+`terraform apply`
+
+3. Pipeline Execution
+* Place your `service_account.json` inside the `dags/` folder as `google_credentials.json`.
+* Start Airflow: `docker-compose up -d`.
+* Access Airflow UI at `localhost:8080` and trigger the `openaq_to_bigquery_zoomcamp` DAG.
+
+4. Transformation
+The DAG automatically runs dbt. To run it manually from the container:
+`dbt run --profiles-dir .`
+
+📊 Dashboard & Insights
+The final output is an interactive Looker Studio Dashboard featuring:
+
+* Global Choropleth Map: Real-time pollution levels by country (ISO Alpha-2).
+* Comparative Analysis: Bar charts comparing pollutants (PM2.5, PM10, etc.) across cities.
+* Data Freshness: Automated updates tracked via BigQuery metadata.
+
+https://lookerstudio.google.com/reporting/644cb36e-2085-44ca-8349-408518f1a563/page/m1ZtF/edit
