@@ -62,7 +62,7 @@ The pipeline follows an **ELT (Extract, Load, Transform)** pattern:
   - The final output is an interactive Looker Studio Dashboard featuring:
 
   * Global Choropleth Map: Real-time pollution levels by country (ISO Alpha-2).
-  * Comparative Analysis: Bar charts comparing pollutants (PM2.5, PM10, etc.) across cities.
+  * Comparative Analysis: Bar charts comparing pollutants (PM2.5, PM10, etc.) across countries.
   * Data Freshness: Automated updates tracked via BigQuery metadata.
 
   https://lookerstudio.google.com/reporting/644cb36e-2085-44ca-8349-408518f1a563/page/m1ZtF/edit
