@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: raw_openaq
+    database: dtc-de-course-486521
+    schema: trips_data_all
+    tables:
+      - name: openaq_raw
