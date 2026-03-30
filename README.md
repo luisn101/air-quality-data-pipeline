@@ -34,7 +34,7 @@ The pipeline follows an **ELT (Extract, Load, Transform)** pattern:
 
 ## 📁 Repository Structure
   * `dags/`: Airflow DAGs and Google Cloud credentials.
-  * `my_project_dbt/`: dbt models (Staging/Marts) and schema definitions.
+  * `dags/my_project_dbt/`: dbt models (Staging/Marts) and schema definitions.
   * `terraform/`: HCL scripts for GCP resource provisioning.
   * `docker-compose.yaml`: Airflow environment configuration.
 
