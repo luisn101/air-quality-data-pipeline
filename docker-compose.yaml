@@ -10,14 +10,15 @@ x-airflow-common:
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
     AIRFLOW__API__AUTH_BACKENDS: 'airflow.api.auth.backend.basic_auth,airflow.api.auth.backend.session'
-    GOOGLE_APPLICATION_CREDENTIALS: /opt/airflow/google_credentials.json
-    AIRFLOW_CONN_GOOGLE_CLOUD_DEFAULT: 'google-cloud-platform://?extra__google_cloud_platform__key_path=%2Fopt%2Fairflow%2Fgoogle_credentials.json'
+    _PIP_ADDITIONAL_REQUIREMENTS: dbt-bigquery
+    GOOGLE_APPLICATION_CREDENTIALS: /opt/airflow/secrets/dags/google_credentials.json
+    AIRFLOW_CONN_GOOGLE_CLOUD_DEFAULT: 'google-cloud-platform://?extra__google_cloud_platform__key_path=%2Fopt%2Fairflow%2Fsecrets%2Fdags%2Fgoogle_credentials.json'
   volumes:
     - ${curr_dir:-.}/dags:/opt/airflow/dags
     - ${curr_dir:-.}/logs:/opt/airflow/logs
     - ${curr_dir:-.}/plugins:/opt/airflow/plugins
     - ${curr_dir:-.}/scripts:/opt/airflow/scripts
-    - ${curr_dir:-.}/google_credentials.json:/opt/airflow/google_credentials.json
+    - ${curr_dir:-.}/:/opt/airflow/secrets
   user: "${AIRFLOW_UID:-1000}:0"
   depends_on:
     postgres:
@@ -35,6 +36,8 @@ services:
       interval: 5s
       retries: 5
     restart: always
+    ports:
+      - "5432:5432"
 
   scheduler:
     <<: *airflow-common
@@ -62,3 +65,4 @@ services:
       _AIRFLOW_WWW_USER_CREATE: 'true'
       _AIRFLOW_WWW_USER_USERNAME: airflow
       _AIRFLOW_WWW_USER_PASSWORD: airflow
+      _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:-dbt-bigquery}

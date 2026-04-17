@@ -1,4 +1,12 @@
-{{ config(materialized='table') }}
+{{ config(
+    materialized='table',
+    partition_by={
+      "field": "last_update",
+      "data_type": "timestamp",
+      "granularity": "day"
+    },
+    cluster_by=["country", "parameter"]
+) }}
 
 with measurements as (
     select * from {{ ref('stg_measurements') }}
