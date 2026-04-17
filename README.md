@@ -48,6 +48,10 @@ The main Airflow DAG is `openaq_to_bigquery_zoomcamp` and executes these steps:
 * `logs/`: Airflow execution logs.
 * `dbt_env/`: Host-side virtual environment for dbt development (not required by container runtime).
 
+## Project Diagram
+
+<img width="3973" height="164" alt="diagram" src="https://github.com/user-attachments/assets/1182583e-f979-4717-b7cb-b6d38643fc12" />
+
 ## 📋 Prerequisites
 1. **Google Cloud Project** with BigQuery and Cloud Storage enabled.
 2. **Service Account** with permissions for BigQuery and Storage.
@@ -96,6 +100,10 @@ dbt test --profiles-dir .
 ## 📝 Notes
 * The dbt project uses `bigquery` as the target warehouse.
 * `dags/openaq_measurements_dag.py` currently generates synthetic sample data as input to the pipeline.
+
+## Project Dashboard
+
+<img width="1035" height="462" alt="looker" src="https://github.com/user-attachments/assets/a71a719a-42a1-410f-b2f5-a31423f1565f" />
 
 ## 🤝 Contributing
 1. Fork the repository.
