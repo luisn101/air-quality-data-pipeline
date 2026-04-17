@@ -104,12 +104,3 @@ dbt test --profiles-dir .
 ## Project Dashboard
 
 <img width="1035" height="462" alt="looker" src="https://github.com/user-attachments/assets/a71a719a-42a1-410f-b2f5-a31423f1565f" />
-
-## 🤝 Contributing
-1. Fork the repository.
-2. Create a feature branch.
-3. Make changes and test.
-4. Submit a pull request.
-
-## 📜 License
-This project is licensed under the MIT License.
