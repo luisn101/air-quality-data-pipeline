@@ -101,6 +101,6 @@ dbt test --profiles-dir .
 * The dbt project uses `bigquery` as the target warehouse.
 * `dags/openaq_measurements_dag.py` currently generates synthetic sample data as input to the pipeline.
 
-## Project Dashboard
+## Project Dashboard (Looker Studio)
 
 <img width="1035" height="462" alt="looker" src="https://github.com/user-attachments/assets/a71a719a-42a1-410f-b2f5-a31423f1565f" />
